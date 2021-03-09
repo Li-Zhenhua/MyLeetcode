@@ -1,7 +1,7 @@
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-//吐槽一下，这题的官方题解效果咋这么差
+//吐槽一下，这题的官方题解效果咋这么差 
 class Solution{
      public boolean isValid(String s){
           //Stack<String> stack = new Stack<>();建议用deque

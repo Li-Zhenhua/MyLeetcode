@@ -1,3 +1,7 @@
+/**
+ * 仅使用两个队列实现先入后出栈。
+ */
+
 import java.util.Deque;
 import java.util.LinkedList;
 

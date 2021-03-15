@@ -1,3 +1,4 @@
+package stack;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -45,3 +46,7 @@ class Solution{
         return ans;
     }
 }*/
+
+public class Question496{
+    
+}

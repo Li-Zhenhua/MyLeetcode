@@ -1,4 +1,4 @@
-package array;
+package array.easy;
 
 /**
  * 给你一个有序数组 nums ，请你 原地 删除重复出现的元素，

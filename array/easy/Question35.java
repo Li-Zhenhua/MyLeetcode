@@ -1,4 +1,4 @@
-package array;
+package array.easy;
 
 /**
  * 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。

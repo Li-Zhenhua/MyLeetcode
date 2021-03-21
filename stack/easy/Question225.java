@@ -1,4 +1,4 @@
-package stack;
+package stack.easy;
 /**
  * 仅使用两个队列实现先入后出栈。
  */

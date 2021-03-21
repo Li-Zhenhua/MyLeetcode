@@ -1,4 +1,4 @@
-package array;
+package array.easy;
 
 /**
  * 给定一个整数数组 nums ，找到一个具有最大和的连续子数组

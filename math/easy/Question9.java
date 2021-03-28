@@ -8,6 +8,7 @@ package math.easy;
 
 class Solution {
     public boolean isPalindrome(int x) {
+        
         if(x<0) return false;
         else if(x == 0) return true;
         else{
@@ -24,5 +25,5 @@ class Solution {
 }
 
 public class Question9 {
-    
+
 }

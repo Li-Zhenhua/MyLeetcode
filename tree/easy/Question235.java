@@ -18,6 +18,7 @@ package tree.easy;
 
   */
 
+  //利用二叉搜索树的性质
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root.val == p.val || root.val == q.val) return root;

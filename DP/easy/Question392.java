@@ -9,6 +9,7 @@ package DP.easy;
 
  */
 
+ //官方dp法，暂时有点懵
 class Solution {
     public boolean isSubsequence(String s, String t) {
         int n = s.length(), m = t.length();

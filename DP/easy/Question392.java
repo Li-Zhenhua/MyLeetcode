@@ -9,6 +9,27 @@ package DP.easy;
 
  */
 
+ //只会依次判断，不太会DP orz
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        if(s.equals("")) return true;
+        if(t.equals("")) return false;
+        int index1 = 0;
+        int index2 = 0;
+        int m = s.length(); int n = t.length();
+        while(index2 < n){
+            if(s.charAt(index1) == t.charAt(index2)){
+                index1++;
+                index2++;
+                if(index1 == m) return true;
+            } else {
+                index2++;
+            }
+        }
+        return false;
+    }
+}
+
  //官方dp法，暂时有点懵
 class Solution {
     public boolean isSubsequence(String s, String t) {

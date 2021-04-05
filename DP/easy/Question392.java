@@ -31,7 +31,7 @@ class Solution {
 }
 
  //官方dp法，暂时有点懵
-class Solution {
+/*class Solution {
     public boolean isSubsequence(String s, String t) {
         int n = s.length(), m = t.length();
 
@@ -57,7 +57,7 @@ class Solution {
         }
         return true;
     }
-}
+}*/
 
 public class Question392 {
     

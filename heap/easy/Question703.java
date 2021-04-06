@@ -17,6 +17,7 @@ class KthLargest {
     int size;
     int index = 0;
     //初始化大小为k的小根堆
+    //因为找的是第k大的数，大小为k的小根堆保证根节点就是第k大的
     public KthLargest(int k, int[] nums) {
         size = k;
         heap = new int[k];

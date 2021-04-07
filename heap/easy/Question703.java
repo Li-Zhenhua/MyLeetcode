@@ -11,6 +11,7 @@ int add(int val) 将 val 插入数据流 nums 后，返回当前数据流中第 
  */
 
  //练习手写实现
+ //delete方法比较复杂，就用控制堆的大小完成题目要求
 class KthLargest {
 
     int[] heap;

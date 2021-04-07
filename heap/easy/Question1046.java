@@ -17,7 +17,9 @@ import java.util.PriorityQueue;
 class Solution {
     public int lastStoneWeight(int[] stones) {
         int n = stones.length;
-       PriorityQueue<Integer> pq = new PriorityQueue<>(n,new Comparator<Integer>(){
+       //lambda表达式法
+       //PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)->b-a);
+        PriorityQueue<Integer> pq = new PriorityQueue<>(n,new Comparator<Integer>(){
            @Override
            public int compare(Integer i1, Integer i2){
                return i2 - i1;

@@ -20,6 +20,7 @@ package linkedlist.easy;
 程序尽量满足 O(n) 时间复杂度，且仅用 O(1) 内存。
 
   */
+  //没写出来orz
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         

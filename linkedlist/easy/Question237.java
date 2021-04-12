@@ -21,6 +21,8 @@ package linkedlist.easy;
  */
 class Solution {
     public void deleteNode(ListNode node) {
+        //感觉是等同于将要删除的节点重新赋值
+        //删除了给定节点的下一个节点
         node.val = node.next.val;
         node.next = node.next.next;
     }

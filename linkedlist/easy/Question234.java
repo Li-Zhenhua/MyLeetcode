@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * 请判断一个链表是否为回文链表。
  */
 //不太会orz
-//方法一：复制到数组中再双指针法
+//方法一：复制到数组中再双指针法，栈的思想也是一样
 /*class Solution {
     public boolean isPalindrome(ListNode head) {
         //if(head == null) return true;测试集head非空
@@ -71,6 +71,30 @@ class Solution {
         return true;
     }
 }
+
+//方法三：递归，启发于逆序链表打印
+/* private void printListNode(ListNode head) {
+    if (head == null)
+        return;
+    printListNode(head.next);
+    System.out.println(head.val);
+} */
+
+/*ListNode temp;//正向遍历的全局节点
+
+public boolean isPalindrome(ListNode head) {
+    temp = head;
+    return check(head);
+}
+
+private boolean check(ListNode head) {
+    if (head == null)
+        return true;
+    boolean res = check(head.next) && (temp.val == head.val);
+    temp = temp.next;
+    return res;
+}*/
+
 
 public class Question234 {
     

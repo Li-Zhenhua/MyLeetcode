@@ -40,6 +40,7 @@ class Solution {
 
 //解法3：摩尔投票法
 //摩尔投票法，遇到相同的数，就投一票，遇到不同的数，就减一票，最后还存在票的数就是众数
+//这就相当于每个“多数元素”和其他元素 两两相互抵消，抵消到最后肯定还剩余至少1个“多数元素”
 /*class Solution {
     public int majorityElement(int[] nums) {
         int cand_num = nums[0], count = 1;

@@ -1,4 +1,4 @@
-package remaining201_300;
+package remaining201_300.easy;
 
 /**
  * 你和你的朋友，两个人一起玩 Nim 游戏：

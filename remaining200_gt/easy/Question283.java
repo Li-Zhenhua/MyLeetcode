@@ -1,6 +1,5 @@
-package remaining201_300.easy;
+package remaining200_gt.easy;
 
-import jdk.internal.net.http.ResponseSubscribers.NullSubscriber;
 
 /**
  * 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，

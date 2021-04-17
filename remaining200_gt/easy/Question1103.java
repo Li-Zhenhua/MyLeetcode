@@ -20,6 +20,7 @@ class Solution {
     public int[] distributeCandies(int candies, int num_people) {
         int n = num_people;
         // how many people received complete gifts
+        //推导得到
         int p = (int) (Math.sqrt(2 * candies + 0.25) - 0.5);
         int remaining = (int)(candies - (p + 1) * p * 0.5);
         int rows = p / n, cols = p % n;

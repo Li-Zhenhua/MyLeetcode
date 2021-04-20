@@ -15,9 +15,15 @@ import jdk.javadoc.internal.tool.resources.javadoc_zh_CN;
  */
 
  //看了思路才知道怎么做
- //第一个交换点后的序列一定是一个逆序列
+
+//即我们需要将一个左边的「较小数」与一个右边的「较大数」交换
+//同时我们要让这个「较小数」尽量靠右，而「较大数」尽可能小。
+
+ //所以第一个交换点后的序列一定是一个逆序列
  //第一个交换点的值要尽可能接近另一个交换点的值，且小于另一个交换点的值
  //交换后也是一个逆序列，再倒序即可
+
+
 class Solution {
     public void nextPermutation(int[] nums) {
         int firstIndex = nums.length -1;
@@ -73,6 +79,40 @@ class Solution {
         }
     }
 }
+
+
+//官方答案更简洁
+/*class Solution {
+    public void nextPermutation(int[] nums) {
+        int i = nums.length - 2;
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
+            i--;
+        }
+        if (i >= 0) {
+            int j = nums.length - 1;
+            while (j >= 0 && nums[i] >= nums[j]) {
+                j--;
+            }
+            swap(nums, i, j);
+        }
+        reverse(nums, i + 1);
+    }
+
+    public void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    public void reverse(int[] nums, int start) {
+        int left = start, right = nums.length - 1;
+        while (left < right) {
+            swap(nums, left, right);
+            left++;
+            right--;
+        }
+    }
+}*/
 
 public class Question31 {
     

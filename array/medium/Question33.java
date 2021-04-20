@@ -25,7 +25,33 @@ nums[1], ..., nums[k-1]]（下标 从 0 开始 计数）。
 }*/
 
 //正常情况的二分法
+//将数组从中间分开成左右两部分的时候，一定有一部分的数组是有序的。
+class Solution{
+    public int search(int[] nums, int target){
+        int left = 0; int right = nums.length-1;
+        while(left < right){
+            int mid = (left + right) / 2;
+            if(nums[mid] == target) return mid;
 
+            //表示有序部分在左侧,注意等号!!!!
+            if(nums[mid] >= nums[left]){
+                if(target >= nums[left] && target < nums[mid]){
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            }else{
+                //有序部分在右侧
+                if(target > nums[mid] && target <= nums[right]){
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+        }
+        return nums[(left + right)/2] == target ? (left + right)/2 : -1;
+    }
+}
 
 public class Question33 {
     

@@ -14,11 +14,18 @@ nums[1], ..., nums[k-1]]（下标 从 0 开始 计数）。
 
  */
 
-class Solution {
+ //测试集问题，这个方法竟然效率挺高
+/*class Solution {
     public int search(int[] nums, int target) {
-
+        for (int i = 0; i < nums.length; i++) {
+            if(nums[i] == target) return i;
+        }
+        return -1;
     }
-}
+}*/
+
+//正常情况的二分法
+
 
 public class Question33 {
     

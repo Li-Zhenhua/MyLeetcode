@@ -34,6 +34,7 @@ class Solution{
             if(nums[mid] == target) return mid;
 
             //表示有序部分在左侧,注意等号!!!!
+            //一定要考虑好边界条件，因为是向下取整，故左边要等号
             if(nums[mid] >= nums[left]){
                 if(target >= nums[left] && target < nums[mid]){
                     right = mid - 1;

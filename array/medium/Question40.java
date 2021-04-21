@@ -55,6 +55,8 @@ class Solution {
 
 //思路一样，但是看别人的这个运行速度更快，对比研究研究
 //估计是我用了deque构造stack？
+//好像真是，把自己的方法改成ArrayList就变快了
+//应该是new ArrayList<>(path)这句，如果用deque看来会慢
 /*class Solution {
 
     private List<List<Integer>> res = new ArrayList<>();

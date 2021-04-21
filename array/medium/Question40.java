@@ -20,6 +20,7 @@ import java.util.List;
 
  */
 
+ //对比第39题，搞清楚剪枝思想
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         if(candidates == null) return new ArrayList<>();

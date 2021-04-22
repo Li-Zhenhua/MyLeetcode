@@ -16,7 +16,7 @@ class Solution {
         int curDistance = 0;
         int nextDistance = 0;
         int count = 0;
-        //倒数第二个数必然能在一步内到达最后一个数
+        //倒数第二个数必然能在一步内到达最后一个数，故在初始时直接设置count为1
         for (int i = 0; i < nums.length-1; i++) {
             nextDistance = Math.max(nums[i]+i, nextDistance);
             if(i == curDistance){

@@ -16,6 +16,7 @@ class Solution {
         //temp = matrix[0];
         int skip;
         int temp;
+        //对角元素
         for (int i = 0; i < n/2; i++) {
             skip = n - 1 - 2*i;
             temp = matrix[i][i];
@@ -24,6 +25,7 @@ class Solution {
             matrix[i+skip][i+skip] = matrix[i][i+skip];
             matrix[i][i+skip] = temp;
         }
+        //非对角其他元素，分组
         for (int i = 0; i < n/2; i++) {
             for (int j = i+1; j < n -1 - i; j++) {
                 temp = matrix[i][j];

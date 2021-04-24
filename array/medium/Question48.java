@@ -14,9 +14,24 @@ class Solution {
         int n = matrix.length;
         //int[] temp = new int[n];
         //temp = matrix[0];
+        int skip;
+        int temp;
         for (int i = 0; i < n/2; i++) {
-            int temp = matrix[i][i];
-            
+            skip = n - 1 - 2*i;
+            temp = matrix[i][i];
+            matrix[i][i] = matrix[i+skip][i];
+            matrix[i+skip][i] = matrix[i+skip][i+skip];
+            matrix[i+skip][i+skip] = matrix[i][i+skip];
+            matrix[i][i+skip] = temp;
+        }
+        for (int i = 0; i < n/2; i++) {
+            for (int j = i+1; j < n -1 - i; j++) {
+                temp = matrix[i][j];
+                matrix[i][j] = matrix[n-1-j][i];
+                matrix[n-1-j][i] = matrix[n-1-i][n-1-j];
+                matrix[n-1-i][n-1-j] = matrix[j][n-1-i];
+                matrix[j][n-1-i] = temp;
+            }
         }
 
     }

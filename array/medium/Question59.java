@@ -5,13 +5,14 @@ package array.medium;
  * 且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。
  */
 
+ //100,96.35难得自己写的一次又有这么好的效果了
 class Solution {
     public int[][] generateMatrix(int n) {
         int[][] ans = new int[n][n];
         int left = 0, right = n-1;
         int up = 0, down = n-1;
         int num = 1;
-        while(left < right && up < down){
+        while(left <= right && up <= down){
             //一圈一圈来
             for (int i = left; i <= right; i++) {
                 ans[up][i] = num++;
@@ -33,9 +34,10 @@ class Solution {
             up++;
             down--;      
         }
-        if(n % 2 == 1){
+        //也可以不用这个if，就把while循环取等号
+/*         if(n % 2 == 1){
             ans[n/2][n/2] = num;
-        }
+        } */
         return ans;
     }
 }

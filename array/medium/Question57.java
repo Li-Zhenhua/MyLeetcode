@@ -10,17 +10,10 @@ import java.util.Arrays;
  */
 
  /**
-  * 考虑过程要清楚明了一点，其实就可以分成下面的步骤：
-  * 1、首先将新区间左边且相离的区间加入结果集
-  （遍历时，如果当前区间的结束位置小于新区间的开始位置，
-  说明当前区间在新区间的左边且相离）；
-
-    2、接着判断当前区间是否与新区间重叠，重叠的话就进行合并，
-    直到遍历到当前区间在新区间的右边且相离，
-    将最终合并后的新区间加入结果集；
-
-    3、最后将新区间右边且相离的区间加入结果集。
-
+  *考虑过程要清楚明了一点，其实就可以分成三种情况
+  1、无重叠，在左侧
+  2、有重叠
+  3、无重叠，在右侧
   */
 
 class Solution {
@@ -59,6 +52,35 @@ class Solution {
         return Arrays.copyOf(ans, index);
     }
 }
+
+//看题解的用三个while方法
+/*class Solution {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        int[][] res = new int[intervals.length + 1][2];
+        int idx = 0;
+        // 遍历区间列表：
+        // 首先将新区间左边且相离的区间加入结果集
+        int i = 0;
+        while (i < intervals.length && intervals[i][1] < newInterval[0]) {
+            res[idx++] = intervals[i++];
+        }
+        // 接着判断当前区间是否与新区间重叠，重叠的话就进行合并，直到遍历到当前区间在新区间的右边且相离，
+        // 将最终合并后的新区间加入结果集
+        while (i < intervals.length && intervals[i][0] <= newInterval[1]) {
+            newInterval[0] = Math.min(intervals[i][0], newInterval[0]);
+            newInterval[1] = Math.max(intervals[i][1], newInterval[1]);
+            i++;
+        }
+        res[idx++] = newInterval;
+        // 最后将新区间右边且相离的区间加入结果集
+        while (i < intervals.length) {
+            res[idx++] = intervals[i++];
+        }
+
+        return Arrays.copyOf(res, idx);
+    }
+}*/
+
 
 public class Question57 {
     

@@ -10,6 +10,65 @@ package array.medium;
 
  */
 
+class Solution {
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        int m = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
+        //最后到达的位被障碍物占领，那么就不可能到达
+        if(obstacleGrid[m-1][n-1] == 1) return 0;
+
+        //只有一行
+        if(m==1){
+            while(--n >=0){
+                if(obstacleGrid[0][n] == 1) return 0;
+            }
+            return 1;
+        }
+
+        //只有一列
+        if(n==1){
+            while(--m >=0){
+                if(obstacleGrid[m][0] == 1) return 0;
+            }
+            return 1;
+        }
+
+        int[][] dp = new int[m][n];
+        dp[m-1][n-1] = 1;
+        boolean flag = false;
+        for (int i = m-2; i >= 0; i--) {
+            if(flag == false && obstacleGrid[i][n-1] == 0){
+                dp[i][n-1] = 1;
+            }else if (obstacleGrid[i][n-1] == 1){
+                flag = true;
+            }
+        }
+
+        flag = false;
+        for (int i = n-2; i >= 0; i--) {
+            if(flag == false && obstacleGrid[m-1][i] == 0){
+                dp[m-1][i] = 1;
+            }else if (obstacleGrid[m-1][i] == 1){
+                flag = true;
+            }
+        }
+
+        for (int i = m-2; i >= 0; i--) {
+            for (int j = n-2; j >= 0; j--) {
+                if(obstacleGrid[i][j] == 1){
+                    dp[i][j] = 0;
+                }else{
+                    dp[i][j] = dp[i+1][j] + dp[i][j+1];
+                }
+            }
+        }
+        return dp[0][0];
+    }
+}
+
+//简化空间复杂度
+
+
 public class Question63 {
     
 }

@@ -10,7 +10,7 @@ package array.medium;
 
  */
 
-class Solution {
+/*class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         int m = obstacleGrid.length;
         int n = obstacleGrid[0].length;
@@ -64,11 +64,33 @@ class Solution {
         }
         return dp[0][0];
     }
+}*/
+
+//举一反三，类似62题简化空间复杂度
+class Solution {
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        int m = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
+        if(obstacleGrid[m-1][n-1] == 1) return 0;
+        int[] dp = new int[n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                //反着来的，故需要倒序
+                if(obstacleGrid[m-1-i][n-1-j] == 1){
+                    dp[j] = 0;
+                } else if (j == 0){
+                    if(i==0){
+                        dp[j] = 1;
+                    }
+                }else {
+                    dp[j] += dp[j-1];
+                }
+                
+            }
+        }
+        return dp[n-1];
+    }
 }
-
-//简化空间复杂度
-
-
 public class Question63 {
     
 }

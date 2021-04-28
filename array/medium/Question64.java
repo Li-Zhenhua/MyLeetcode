@@ -37,6 +37,7 @@ class Solution {
         int [] dp = new int[m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
+                //这里是倒过来走了
                 if(j == 0){
                     dp[j] += grid[n-1-i][m-1-j];
                 }else if(i == 0){

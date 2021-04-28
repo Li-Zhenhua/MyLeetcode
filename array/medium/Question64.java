@@ -29,7 +29,7 @@ package array.medium;
         return dp[0][0];
     }
 }*/
-//优化后
+//优化空间复杂度后
 class Solution {
     public int minPathSum(int[][] grid) {
         int n = grid.length;

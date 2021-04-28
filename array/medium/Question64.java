@@ -8,7 +8,8 @@ package array.medium;
  */
 
  //一般的dp
-class Solution {
+ //这里也可以不用新建dp数组，直接在原始的grid数组上操作
+/*class Solution {
     public int minPathSum(int[][] grid) {
         int n = grid[0].length;
         int m = grid.length;
@@ -27,8 +28,29 @@ class Solution {
         }
         return dp[0][0];
     }
-}
+}*/
 //优化后
+class Solution {
+    public int minPathSum(int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int [] dp = new int[m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(j == 0){
+                    dp[j] += grid[n-1-i][m-1-j];
+                }else if(i == 0){
+                    dp[j] = dp[j-1] +grid[n-1-i][m-1-j];
+                }else{
+                    dp[j] = Math.min(dp[j], dp[j-1]) + grid[n-1-i][m-1-j];
+                }
+                
+            }
+        }
+        return dp[m-1];
+    }
+}
+
 
 public class Question64 {
     

@@ -21,6 +21,10 @@ class Solution {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if(board[i][j] == c){
+                    //不能如下写
+                    //return check(board, word, 0, i, j);
+                    //这代表找到的第一个等于c的board[i][j]后就不管对错直接返回了
+                    //但是后面反而可能有合适的位置满足要求
                     if(check(board, word, 0, i, j)) return true;
                 }
             }
@@ -43,13 +47,16 @@ class Solution {
             //将已经使用过的位置进行更改
             //注意不能用字母
             board[row][column] = ' ';
+
+            //判断周围是否有下一个满足的char字符
+            //因为上面40行有判断是否越界，故这里不需要单独判断
             if(check(board, word, index+1, row+1, column) ||
             check(board, word, index+1, row-1, column) ||
             check(board, word, index+1, row, column+1) ||
             check(board, word, index+1, row, column-1)){
                 return true;
             }
-            //注意这里要还原状态！！！
+            //回溯算法注意这里要还原状态！！！
             //第一次写的时候就忘记了orz
             board[row][column] = temp;
         }

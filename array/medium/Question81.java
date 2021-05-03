@@ -26,15 +26,16 @@ package array.medium;
     }
 }*/
 
+//感动！！！理解后自己写的竟然能有100，98.99
 class Solution {
     public boolean search(int[] nums, int target) {
         int left = 0, right = nums.length-1;
         while(left <= right){
-            int mid = (left + right) / 2;
+            //int mid = (int)Math.ceil((left + right) / 2);
+            int mid = left + (right - left) / 2;
             if(nums[mid] == target) return true;
 
             //注意边界条件的找寻确定
-            //暂时还是有点问题，有时间再看
             //寻找有序的一侧然后再判断target是否在里面
             if(nums[mid] > nums[left]){
                 if(target < nums[mid] && target >= nums[left]){
@@ -42,12 +43,22 @@ class Solution {
                 }else{
                     left = mid + 1;
                 }   
-            } else {
+            } else if(nums[mid] < nums[left]){
                 if(target > nums[mid] && target <= nums[right]){
                     left = mid + 1;
                 }else{
                     right = mid - 1;
                 } 
+            } else {
+                if(nums[mid] == nums[right]){
+                //此时无法区分左右区间哪个是有序的
+                //故可以考虑将左右边界都减一
+                //这一步思路是真没想到orz
+                right--;
+                left++;
+                }else{
+                    left = mid + 1;
+                }
             }
         }
         return false;

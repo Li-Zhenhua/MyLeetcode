@@ -14,14 +14,15 @@ class Solution {
     List<List<Integer>> ans = new ArrayList<>();
     List<Integer> list = new ArrayList<>();
     public List<List<Integer>> subsets(int[] nums) {
-        ans.add(list);
+        //ans.add(list);
         dfs(nums, 0);
         return ans;
     }
 
     public void dfs(int[] nums, int index){
         if(index == nums.length){
-            ans.add(list);
+            //这里不能直接add(list)
+            ans.add(new ArrayList<>(list));
             return;
         }
 

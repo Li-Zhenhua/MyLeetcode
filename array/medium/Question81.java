@@ -51,12 +51,15 @@ class Solution {
                 } 
             } else {
                 if(nums[mid] == nums[right]){
-                //此时无法区分左右区间哪个是有序的
-                //故可以考虑将左右边界都减一
-                //这一步思路是真没想到orz
-                right--;
-                left++;
+                    //此时无法区分左右区间哪个是有序的
+                    //故可以考虑将左右边界都减一
+                    //这一步思路是真没想到orz
+                    right--;
+                    left++;
                 }else{
+                    //这时左边一定是同一个数，也就是左边有序
+                    //且左边的数等于nums[mid]，也就是不等于target
+                    //故target一定在右边
                     left = mid + 1;
                 }
             }

@@ -35,8 +35,11 @@ class Solution {
     public TreeNode buildTree(int[] preorder, int preLeft, int preRight, 
     int[] inorder, int inLeft, int inRight) {
         if(preLeft == preRight) return new TreeNode(preorder[preLeft]);
+        else if(preLeft > preRight) return null;
 
-        int inRootIndex;
+        TreeNode t = new TreeNode(preorder[preLeft]);
+
+        int inRootIndex = 0;
         for (int i = inLeft; i <= inRight; i++) {
             if(inorder[i] == preorder[preLeft]){
                 inRootIndex = i;
@@ -46,11 +49,12 @@ class Solution {
 
         //构造左子树
         int leftNum = inRootIndex - inLeft;
-        buildTree(preorder, preLeft+1, preLeft+leftNum, inorder, inLeft, inRootIndex);
+        t.left = buildTree(preorder, preLeft+1, preLeft+leftNum, inorder, inLeft, inRootIndex);
 
         //构造右子树
         //int rightNum = inRight - inRootIndex;
-        //buildTree(preorder, preLeft+leftNum+2, preRight, inorder, inRootIndex+1, inRight);
+        t.right = buildTree(preorder, preLeft+leftNum+1, preRight, inorder, inRootIndex+1, inRight);
+        return t;
     }
 }
 

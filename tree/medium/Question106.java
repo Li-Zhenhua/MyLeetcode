@@ -33,10 +33,10 @@ class Solution {
         for (int i = 0; i < inorder.length; i++) {
             map.put(inorder[i], i);
         }
-        return buildTree(inorder, 0, inorder.length-1, postorder, 0, postorder.length-1, map);
+        return buildTree(0, inorder.length-1, postorder, 0, postorder.length-1, map);
     }
 
-    public TreeNode buildTree(int[] inorder, int inLeft, int inRight, 
+    public TreeNode buildTree(int inLeft, int inRight, 
     int[] postorder, int postLeft, int postRight, Map<Integer,Integer> map){
         if(postLeft > postRight) return null;
 
@@ -46,13 +46,15 @@ class Solution {
 
         //构造右子树
         int rightNum = inRight - inRootIndex;
-        t.right = buildTree(inorder, inRootIndex+1, inRight, postorder, postRight-rightNum, postRight-1, map);
+        t.right = buildTree(inRootIndex+1, inRight, postorder, postRight-rightNum, postRight-1, map);
 
         //构造左子树
-        t.left = buildTree(inorder, inLeft, inRootIndex-1, postorder, postLeft, postRight-rightNum-1, map);
+        t.left = buildTree(inLeft, inRootIndex-1, postorder, postLeft, postRight-rightNum-1, map);
         return t;
     }
 }
+
+//类似105题，可用迭代法
 
 public class Question106 {
     

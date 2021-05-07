@@ -34,7 +34,6 @@ class Solution2 {
             //得这样正着来，由Math.min(dp[j], dp[j+1])也可以看出
             //正着来更新dp[i]的值，此后不会再用到，故才是正确的
             for (int j = 0; j <= i; j++) {
-                //这样会在更新时覆盖导致后面数据出错
                 dp[j] = Math.min(dp[j], dp[j+1]) + triangle.get(i).get(j);
             }
         }

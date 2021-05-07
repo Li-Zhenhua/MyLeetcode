@@ -56,6 +56,7 @@ class Solution {
 
 //类似105题，可用迭代法
 
+
 public class Question106 {
     
 }

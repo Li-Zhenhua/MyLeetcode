@@ -38,6 +38,46 @@ class Solution {
     }
 }
 
+
+//官方的枚举法+位运算
+//原序列中有 9个数，每个数都有两种状态，
+//「被选择到子集中」和「不被选择到子集中」，
+//所以状态的总数为 2^9
+
+//我觉得这种方法挺难想的，还不如就像上面直接递归法
+/*class Solution {
+    List<Integer> temp = new ArrayList<Integer>();
+    List<List<Integer>> ans = new ArrayList<List<Integer>>();
+
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        for (int mask = 0; mask < (1 << 9); ++mask) {
+            if (check(mask, k, n)) {
+                ans.add(new ArrayList<Integer>(temp));
+            }
+        }
+        return ans;
+    }
+
+    public boolean check(int mask, int k, int n) {
+        temp.clear();
+        for (int i = 0; i < 9; ++i) {
+            if (((1 << i) & mask) != 0) {
+                temp.add(i + 1);
+            }
+        }
+        if (temp.size() != k) {
+            return false;
+        }
+        int sum = 0;
+        for (int num : temp) {
+            sum += num;
+        }
+        return sum == n;
+    }
+}*/
+
+
+
 public class Question216 {
     
 }

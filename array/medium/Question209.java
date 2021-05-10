@@ -41,6 +41,32 @@ class Solution {
     }
 }
 
+//看别人的写法，思路和自己是一样的，只不过不用判断那么多
+/*class Solution {
+    public int minSubArrayLen(int s, int[] nums) {
+        int n = nums.length;
+        if (n == 0) {
+            return 0;
+        }
+        int ans = Integer.MAX_VALUE;
+        int start = 0, end = 0;
+        int sum = 0;
+        while (end < n) {
+            sum += nums[end];
+            //这里先对start进行移动可以防止后面
+            //end=n退出循环时还未移动start的尴尬
+            while (sum >= s) {
+                ans = Math.min(ans, end - start + 1);
+                sum -= nums[start];
+                start++;
+            }
+            end++;
+        }
+        
+        return ans == Integer.MAX_VALUE ? 0 : ans;
+    }
+}*/
+
 public class Question209 {
     
 }

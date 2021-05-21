@@ -71,7 +71,7 @@ t = t1 + t2 + ... + tm
 
 //转移方程没想到orz
 //就类似路径问题，只能向右或向下
-//dp[i][j]表示s1的前i个元素和s2的前j个元素
+//dp[i][j]表示s1的前i个元素和s2的前j个元素能否交错组成s3的前i+j个元素
 class Solution97 {
     public boolean isInterleave(String s1, String s2, String s3) {
         int len1 = s1.length();
@@ -81,7 +81,44 @@ class Solution97 {
             return false;
         }
 
-        boolean[][] dp = new boolean
+        /*boolean[][] dp = new boolean[len1+1][len2+1];
+        //初始空值时为true
+        dp[0][0] = true;
+        for (int i = 0; i < len1+1; i++) {
+            for (int j = 0; j < len2+1; j++) {
+                if(i > 0){
+                    dp[i][j] = dp[i-1][j] && s3.charAt(i+j-1) == s1.charAt(i-1);
+                }
+
+                //往右方查的时候能找到对的时就不用往下方找了
+                if(dp[i][j]) continue;
+
+                if(j > 0){
+                    dp[i][j] =dp[i][j-1] && s3.charAt(i+j-1) == s2.charAt(j-1);
+                }
+            }
+        }
+        return dp[len1][len2];*/
+
+        //优化空间复杂度,按行来
+        boolean[] dp = new boolean[len2+1];
+        dp[0] = true;
+        int index = 1;
+        while(index <= len2){
+            //此时行数i为0，列数j即为index
+            dp[index] = dp[index-1] && s3.charAt(index-1) == s2.charAt(index-1);
+            index++;
+        }
+        //循环行
+        for (int i = 1; i < len1+1; i++) {
+            dp[0] = dp[0] && s3.charAt(i-1) == s1.charAt(i-1);
+            index = 1;
+            while(index <= len2){
+                dp[index] = (dp[index] && s3.charAt(i+index-1) == s1.charAt(i-1)) || (dp[index-1] && s3.charAt(i+index-1) == s2.charAt(index-1));
+                index++;
+            }
+        }
+        return dp[len2];
     }
 }
 

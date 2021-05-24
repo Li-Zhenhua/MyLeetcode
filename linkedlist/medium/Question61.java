@@ -46,7 +46,7 @@ class Solution {
         pre.next = null;
         curr.next = head;
         return start;*/
-
+    
         if(head == null || head.next == null || k == 0) return head;
         int count = 1;
         ListNode l = head;

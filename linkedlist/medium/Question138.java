@@ -43,6 +43,35 @@ random_index：随机指针指向的节点索引（范围从 0 到 n-1）；
  */
 
 class Solution {
+    public Node copyRandomList(Node head) {
+        //最简单的想法，两次遍历
+        if(head == null) return null;
+        //map存储一个新旧节点的键值对
+        Map<Node,Node> map = new HashMap<>();
+        Node curr = head;
+        Node newHead = new Node(head.val);
+        map.put(head, newHead);
+        Node curr2 = newHead;
+        while(curr.next != null){
+            curr2.next = new Node(curr.next.val);
+            map.put(curr.next, curr2.next);
+            curr = curr.next;
+            curr2 = curr2.next;
+        }
+
+        curr = head;
+        curr2 = newHead;
+        while(curr != null){
+            curr2.random = map.get(curr.random);
+            curr = curr.next;
+            curr2 = curr2.next;
+        }
+        return newHead;
+    }
+}
+
+
+/*class Solution {
     //map存储一个新旧节点的键值对
     Map<Node,Node> map = new HashMap<>();
     public Node copyRandomList(Node head) {
@@ -56,7 +85,7 @@ class Solution {
         newHead.random = copyRandomList(head.random);
         return newHead;
     }
-}
+}*/
 
 //官方构造新旧节点交错的链表，很巧妙
 /*class Solution {

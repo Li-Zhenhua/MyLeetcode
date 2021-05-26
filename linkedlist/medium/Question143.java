@@ -56,7 +56,50 @@ import java.util.Map;
 //寻找链表中点 + 链表逆序 + 合并链表
 class Solution {
     public void reorderList(ListNode head) {
+		if(head == null || head.next == null || head.next.next == null) return;
 		
+		ListNode mid = findMidNode(head);
+		ListNode temp = mid.next;
+		//分割成前半和后半两个链表
+		mid.next = null;
+		ListNode tail = reverseListNode(temp);
+		mergeList(head, tail);
+		return;
+	}
+
+	//快慢指针找中点，从而分成两个链表
+	public ListNode findMidNode(ListNode head){
+		ListNode fast = head;
+		ListNode slow = head;
+		while(fast != null && fast.next != null){
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		return slow;
+	}
+
+	//目的是将后半部分逆序
+	public ListNode reverseListNode(ListNode head){
+		ListNode pre = null;
+		while(head != null){
+			ListNode temp = head.next;
+			head.next = pre;
+			pre = head;
+			head = temp;
+		}
+		return pre;
+	}
+
+	//合并链表
+	public void mergeList(ListNode head, ListNode tail){
+		while(head != null && tail != null){
+			ListNode temp1 = head.next;
+			ListNode temp2 = tail.next;
+			head.next = tail;
+			tail.next = temp1;
+			head = temp1;
+			tail = temp2;
+		}
 	}
 }
 

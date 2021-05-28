@@ -116,7 +116,7 @@ class Solution {
     }
 
     public int div(int a, int b){
-        if(a > b) return 0;
+        if(a > b) return 0;//因为是复数，大小与正数相反
         int count = 1;
         int tb = b;
         while(tb+tb >= a && tb+tb < 0){ // 溢出之后不再小于0

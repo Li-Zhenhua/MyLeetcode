@@ -3,6 +3,8 @@ package tree.medium;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.tree.TreeNode;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -24,7 +26,7 @@ import java.util.List;
   从 1 到 n 互不相同的不同 二叉搜索树 。可以按 任意顺序 返回答案。
   */
 
-//日常回溯
+//日常回溯方法,多练练就行
 class Solution {
     public List<TreeNode> generateTrees(int n) {
         return buildTree(1, n);
@@ -33,8 +35,25 @@ class Solution {
     public List<TreeNode> buildTree(int left, int right){
         List<TreeNode> ans = new LinkedList<>();
         if(left > right){
-            ans
+            ans.add(null);
+            return ans;
         }
+
+        for (int i = left; i <= right; i++) {
+            List<TreeNode> leftTree = buildTree(left, i-1);
+            List<TreeNode> rightTree = buildTree(i+1, right);
+
+            for (TreeNode treeNode : leftTree) {
+                for (TreeNode treeNode2 : rightTree) {
+                    TreeNode curr = new TreeNode(i);
+                    curr.left = treeNode;
+                    curr.right = treeNode2;
+                    ans.add(curr);
+                }
+            }
+        }
+
+        return ans;
     }
 }
 

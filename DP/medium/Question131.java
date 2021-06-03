@@ -12,6 +12,8 @@ import java.util.List;
 回文串 是正着读和反着读都一样的字符串。
  */
 
+
+//递归+动态规划预处理，学习了
 public class Solution {
 
     public List<List<String>> partition(String s) {

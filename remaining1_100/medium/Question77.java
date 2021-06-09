@@ -7,7 +7,7 @@ import java.util.List;
  * 给定两个整数 n 和 k，返回 1 ... n 中所有可能的 k 个数的组合。
  */
 
-//与46、47一起看，前两者是排列
+//与46、47一起看，这两题是排列
 
 class Solution {
     List<List<Integer>> ans = new ArrayList<>();

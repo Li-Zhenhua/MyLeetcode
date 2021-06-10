@@ -36,7 +36,7 @@ import javax.swing.tree.TreeNode;
         dfs(root,list);
         TreeNode x = null;
         TreeNode y = null;
-        //扫面遍历的结果，找出可能存在错误交换的节点x和y
+        //找出可能存在错误交换的节点x和y
         for(int i=0;i<list.size()-1;++i) {
             if(list.get(i).val>list.get(i+1).val) {
                 y = list.get(i+1);
@@ -45,7 +45,7 @@ import javax.swing.tree.TreeNode;
                 }
             }
         }
-        //如果x和y不为空，则交换这两个节点值，恢复二叉搜索树
+        //交换节点值，恢复二叉搜索树
         if(x!=null && y!=null) {
             int tmp = x.val;
             x.val = y.val;
@@ -53,7 +53,7 @@ import javax.swing.tree.TreeNode;
         }
     }
 
-    //中序遍历二叉树，并将遍历的结果保存到list中        
+    //中序遍历     
     private void dfs(TreeNode node,List<TreeNode> list) {
         if(node==null) {
             return;

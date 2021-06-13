@@ -21,23 +21,17 @@ class Solution {
         while(i < n){
             int gasRemain = gas[i] - cost[i];
             int startStation = i;
-            int next = i == n-1 ? 0 : i+1;
+            int count = 1;
             while(gasRemain >= 0){
-                
-                if(next == startStation){
+                if(count == n){
                     return startStation;
                 }
-                
-                gasRemain += gas[next] - cost[next];
-
-                if(next == n-1){
-                    next = 0;
-                }else{
-                    next++;
-                }
-                
+                int k = (i + count) % n;
+                gasRemain += gas[k] - cost[k];
+                count++;
             }
-            i = next + 1;
+            
+            i = i + count;
             
         }
         return -1;

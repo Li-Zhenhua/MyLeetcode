@@ -12,8 +12,25 @@ import java.util.Arrays;
  //
 class Solution {
     public String largestNumber(int[] nums) {
-        Arrays.sort(nums);
+        int n = nums.length;
+        String[] stringNums = new String[n];
+        for (int i = 0; i < n; i++) {
+            stringNums[i] = String.valueOf(nums[i]);
+        }
+        //比较两个拼接的字符串大小，compareTo按照字典序来
+        Arrays.sort(stringNums, (a,b) -> {
+            return (b+a).compareTo(a+b);
+        });
         StringBuilder sb = new StringBuilder();
-        
+        for (int i = 0; i < n; i++) {
+            sb.append(stringNums[i]);
+        }
+        //一个极端情况，数组全是0，要去除前导0
+        int index = 0;
+        n = sb.length();
+        while(sb.charAt(index) == '0' && index < n-1){
+            index++;
+        }
+        return sb.substring(index);
     }
 }

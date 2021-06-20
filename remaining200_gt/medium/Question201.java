@@ -7,6 +7,7 @@ package remaining200_gt.medium;
 
 
  //看思路后才反应过来，其实就是找公共前缀
+ 
  //第一种方法，按位右移，直到两数相等，通过位移次数确定公共前缀
 /*class Solution {
     public int rangeBitwiseAnd(int left, int right) {

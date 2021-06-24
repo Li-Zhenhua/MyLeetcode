@@ -37,6 +37,8 @@ class Solution {
             //为了防止使用栈，这里将指向相对于207题反转
             //从而实现了从栈到队列的变化
             //官方题解好像是模拟栈，index初始值设置为len-1
+
+            //这里是加入每一门课程修之前需要修的前导课程
             edges.get(prerequisites[i][0]).add(prerequisites[i][1]);
         }
 

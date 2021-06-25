@@ -1,5 +1,7 @@
 package remaining200_gt.medium;
 
+import jdk.internal.icu.impl.Trie;
+
 /**
  * 请你设计一个数据结构，支持 添加新单词 和 
  * 查找字符串是否与任何先前添加的字符串匹配 。
@@ -24,42 +26,58 @@ class WordDictionary {
             next = new Trie[26];
         }
     }
-    
+    private Trie root;
 
     /** Initialize your data structure here. */
     public WordDictionary() {
-        isEnd =false;
-        next = new WordDictionary[26];
+        root = new Trie();
     }
     
     public void addWord(String word) {
-        WordDictionary curr = this;
+        Trie curr = root;
         for (int i = 0; i < word.length(); i++) {
             int index = word.charAt(i) - 'a';
             if(curr.next[index] == null){
-                curr.next[index] = new WordDictionary();
+                curr.next[index] = new Trie();
                 
             }
             curr = curr.next[index];
         }
+        curr.isEnd = true;
     }
     
     public boolean search(String word) {
-        WordDictionary curr = this;
+        return searchHelper(word, root);  
+    }
+
+    public boolean searchHelper(String word,Trie root){
+        //其实这里word.length()就是边界条件，
+        //即使匹配字符串全是'.'，也会在最后substring得到一个长度为0的子串
+        //从而达到边界条件递归回去
         for (int i = 0; i < word.length(); i++) {
-            int index;
-            if(word.charAt(i) != '.'){
-                index = word.charAt(i) - 'a';
-                if(curr.next[index] == null){
+            char temp = word.charAt(i);
+            if(temp == '.'){
+                //因为'.'匹配所有字母，所以要依次遍历26个字母
+                for (int j = 0; j < 26; j++) {
+                    if(root.next[j] != null){
+                        //如果有一个对应的字母找到匹配字符串，那么就是true 
+                        if(searchHelper(word.substring(i+1), root.next[j])){
+                            return true;
+                        }
+                    }
+                }
+                //此时递归没有找到匹配的字符串
+                return false;
+            }else{
+                int index = temp - 'a';
+                if(root.next[index] == null){
                     return false;
                 }
-                curr = curr.next[index];
-            }else{
-
+                root = root.next[index];
             }
             
-
         }
+        return root.isEnd;
     }
 }
 

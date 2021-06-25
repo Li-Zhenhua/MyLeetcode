@@ -29,7 +29,7 @@ class Trie {
     /** Initialize your data structure here. */
     public Trie() {
         isEnd = false;
-        next = new Trie[26];
+        next = new Trie[26]; //26个字母
     }
     
     /** Inserts a word into the trie. */

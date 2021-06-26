@@ -56,6 +56,9 @@ import java.util.Arrays;
 //有限状态机，列写真值表，（数字电路的知识）
 /*class Solution {
     public int singleNumber(int[] nums) {
+        //用（ab）来表示可能的状态
+        //因为每一位求和后一定是3的倍数+单独的那个数对应的位的值
+        //故需要三个状态
         int a = 0, b = 0;
         for (int num : nums) {
             //电路中的 a 和 b 是「同时」得出结果的

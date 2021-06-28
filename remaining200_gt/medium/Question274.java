@@ -1,5 +1,7 @@
 package remaining200_gt.medium;
 
+import java.util.Arrays;
+
 /**
  * 给定一位研究者论文被引用次数的数组（被引用次数是非负整数）。编写一个方法，计算出研究者的 h 指数。
 

@@ -1,0 +1,47 @@
+package remaining200_gt.medium;
+
+/**在和朋友一起玩 猜数字（Bulls and Cows）游戏，该游戏规则如下：
+
+你写出一个秘密数字，并请朋友猜这个数字是多少。
+朋友每猜测一次，你就会给他一个提示，告诉他的猜测数字中有多少位属于数字和确切位置都猜对了（称为“Bulls”, 公牛），有多少位属于数字猜对了但是位置不对（称为“Cows”, 奶牛）。
+朋友根据提示继续猜，直到猜出秘密数字。
+请写出一个根据秘密数字和朋友的猜测数返回提示的函数，返回字符串的格式为 xAyB ，x 和 y 都是数字，A 表示公牛，用 B 表示奶牛。
+
+xA 表示有 x 位数字出现在秘密数字中，且位置都与秘密数字一致。
+yB 表示有 y 位数字出现在秘密数字中，但位置与秘密数字不一致。
+请注意秘密数字和朋友的猜测数都可能含有重复数字，每位数字只能统计一次。 
+
+说明: 你可以假设秘密数字和朋友的猜测数都只包含数字，并且它们的长度永远相等。
+*/
+
+class Solution {
+    public String getHint(String secret, String guess) {
+        int ANum = 0, BNum = 0;
+        int[] countS = new int[10];
+        int[] countG = new int[10];
+        for (int i = 0; i < secret.length(); i++) {
+            char sChar = secret.charAt(i);
+            char gChar = guess.charAt(i);
+            if(sChar == gChar){
+                ANum++;
+            }else{
+                countS[sChar-'0']++;
+                countG[gChar-'0']++;
+            }
+        }
+        for (int i = 0; i < 10; i++) {
+            BNum = BNum + Math.min(countG[i], countS[i]);
+        }
+        // String ans = String.valueOf(ANum) + "A" + String.valueOf(BNum) + "B";
+        // return ans;
+
+        //这个可能和底层有关，stringbuilder的方法比上面字符串拼接效率搞了好多
+        //上面8ms，下面1ms
+        StringBuilder stringBuilder = new StringBuilder();
+        return stringBuilder.append(ANum).append('A').append(BNum).append('B').toString();
+    }
+}
+
+public class Question299 {
+    
+}

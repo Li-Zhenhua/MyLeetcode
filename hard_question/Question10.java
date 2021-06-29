@@ -34,6 +34,7 @@ package hard_question;
         return f[m][n];
     }
 
+    //注意这里的i，j是第几个字符，对应下标要减一
     public boolean matches(String s, String p, int i, int j) {
         if (i == 0) {
             return false;

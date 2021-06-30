@@ -74,7 +74,7 @@ public class Codec {
     public String serialize(TreeNode root) {
         StringBuffer s = new StringBuffer();
         List<TreeNode> next = new ArrayList<TreeNode>();
-        if(root != null) next.add(root);
+        if(root != null) next.add(root);//入队列
         while(next.size() != 0){
             List<TreeNode> temp = new ArrayList<TreeNode>(next);
             next.clear();

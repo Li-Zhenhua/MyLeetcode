@@ -2,7 +2,9 @@ package 剑指offer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 请实现两个函数，分别用来序列化和反序列化二叉树。

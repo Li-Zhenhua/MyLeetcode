@@ -72,7 +72,8 @@ import java.util.Deque;
 
 如果遇到了非空节点，则除了消耗一个槽位外，还要再补充两个槽位。（因为非空节点有两个子节点）
  */
-class Solution {
+
+/*class Solution {
     public boolean isValidSerialization(String preorder) {
         int n = preorder.length();
         int i = 0;
@@ -95,6 +96,38 @@ class Solution {
             }
         }
         return slots == 0;
+    }
+}*/
+
+
+//还有一种入度出度的方法,写完之后发现就是上面的slots方法，思路是一样的
+//入度之和等于出度，入度减，出度加
+//#节点一个入度0个出度
+//除根节点外，非空节点都有1个入度，两个出度（根节点没有入度）
+//为了方便，可以假设初始的度的总和为1
+class Solution {
+    public boolean isValidSerialization(String preorder) {
+        int n = preorder.length();
+        int index = 0;
+        int count = 1;
+        while(index < n){
+            if(preorder.charAt(index) == ','){
+                index++;
+            }else if(preorder.charAt(index) == '#'){
+                count--;
+                //这里注意如果中间过程中“度”的总和已经为0了，那么必然是不正确的
+                if(count == 0 && index < n-1) return false;
+                index++;
+            }else{
+                //取一个数字的值
+                while(index < n && preorder.charAt(index) != ','){
+                    index++;
+                }
+                //count = count-1+2;
+                count++;
+            }
+        }
+        return count == 0;
     }
 }
 

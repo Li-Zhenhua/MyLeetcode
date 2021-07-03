@@ -1,5 +1,7 @@
 package 每日一题;
 
+import java.util.Arrays;
+
 /**
  * 
 夏日炎炎，小男孩 Tony 想买一些雪糕消消暑。
@@ -15,9 +17,20 @@ Tony 一共有 coins 现金可以用于消费，他想要买尽可能多的雪�
  */
 
  //感觉就是动规或dfs或贪心
+ //注意这里只能用贪心，01背包形式的动规会超时
 class Solution {
     public int maxIceCream(int[] costs, int coins) {
-
+        Arrays.sort(costs);
+        int count = 0;
+        for (int i = 0; i < costs.length; i++) {
+            coins -= costs[i];
+            if(coins >= 0){
+                count++;     
+            }else{
+                break;
+            }
+        }
+        return count;
     }
 }
 

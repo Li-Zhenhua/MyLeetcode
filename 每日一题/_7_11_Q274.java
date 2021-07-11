@@ -18,7 +18,8 @@ class Solution {
         int n = citations.length;
         for (int i = 0; i < n; i++) {
             //当前位置后面有n-i-1篇论文
-            //在该判定条件成立的情况下，n-i一定会不大于citations[i-1]
+            //在该判定条件成立的情况下，也意味着citations[i] >= n-i
+            //n-i篇论文至少被引用了n-i次
             //故可以直接返回n-i
             if(citations[i] > n-i-1){
                 return n-i;

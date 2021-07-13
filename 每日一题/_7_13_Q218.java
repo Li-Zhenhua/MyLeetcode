@@ -1,9 +1,11 @@
 package 每日一题;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * 城市的天际线是从远处观看该城市中所有建筑物形成的轮廓的外部轮廓。给你所有建筑物的位置和高度，请返回由这些建筑物形成的 天际线 。
@@ -26,7 +28,7 @@ buildings 按 lefti 非递减排序
  */
 
  //叫做扫描线问题，日常学习学习orz
-class Solution {
+/*class Solution {
     public List<List<Integer>> getSkyline(int[][] buildings) {
         List<List<Integer>> ans = new ArrayList<>();
 
@@ -45,8 +47,60 @@ class Solution {
                 return a[1]-b[1];
             }
         });
-            
         
+        //大根堆
+        PriorityQueue<Integer> heap = new PriorityQueue<>((a,b)-> b-a);
+        int prev = 0;
+        heap.add(0);
+        for(int[] temp2 : temp){
+            int p = temp2[0], h = temp2[1];
+            //此时为左端点
+            if(h < 0){
+                heap.add(-h);
+            }else{
+                heap.remove(h);
+            }
+
+            int curr = heap.peek();
+            if(curr != prev){
+                List<Integer> list = new ArrayList<>();
+                list.add(p);
+                list.add(curr);
+                ans.add(list);
+                prev = curr;
+            }
+        }
+        return ans;
+    }
+}*/
+
+class Solution {
+    public List<List<Integer>> getSkyline(int[][] buildings) {
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a, b) -> b[1] - a[1]);
+        List<Integer> boundaries = new ArrayList<Integer>();
+        for (int[] building : buildings) {
+            boundaries.add(building[0]);
+            boundaries.add(building[1]);
+        }
+        Collections.sort(boundaries);
+
+        List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        int n = buildings.length, idx = 0;
+        for (int boundary : boundaries) {
+            while (idx < n && buildings[idx][0] <= boundary) {
+                pq.offer(new int[]{buildings[idx][1], buildings[idx][2]});
+                idx++;
+            }
+            while (!pq.isEmpty() && pq.peek()[0] <= boundary) {
+                pq.poll();
+            }
+
+            int maxn = pq.isEmpty() ? 0 : pq.peek()[1];
+            if (ret.size() == 0 || maxn != ret.get(ret.size() - 1).get(1)) {
+                ret.add(Arrays.asList(boundary, maxn));
+            }
+        }
+        return ret;
     }
 }
 

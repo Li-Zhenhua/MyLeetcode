@@ -8,7 +8,7 @@ package remaining200_gt.medium;
 例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。
  */
 
-class Solution {
+/*class Solution {
     public int lengthOfLIS(int[] nums) {
         //动态规划
         int n = nums.length;
@@ -32,6 +32,25 @@ class Solution {
             maxLen = Math.max(maxLen,dp[i]);
         }
         return maxLen;
+    }
+}*/
+
+//二分法
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        int[] tails = new int[nums.length];
+        int res = 0;
+        for(int num : nums) {
+            int i = 0, j = res;
+            while(i < j) {
+                int m = (i + j) / 2;
+                if(tails[m] < num) i = m + 1;
+                else j = m;
+            }
+            tails[i] = num;
+            if(res == j) res++;
+        }
+        return res;
     }
 }
 

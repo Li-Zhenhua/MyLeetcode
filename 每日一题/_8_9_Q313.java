@@ -71,7 +71,7 @@ class Solution {
             int next = Integer.MAX_VALUE;  
             for (int i=0; i<primes.length; ++i){
                 int tmp = primes[i]*ans[p[i]];
-                if (tmp > ans[curr-1] && tmp < next){ 
+                if (tmp < next){ 
                     next = tmp;
                 }
             }

@@ -71,6 +71,7 @@ class Solution {
             int next = Integer.MAX_VALUE;  
             for (int i=0; i<primes.length; ++i){
                 int tmp = primes[i]*ans[p[i]];
+                //比较每一个primes[i]序列得到最小的数即为下一个丑数
                 if (tmp < next){ 
                     next = tmp;
                 }
